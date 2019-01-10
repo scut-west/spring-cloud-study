@@ -18,9 +18,11 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://admin:admin123@localhost:8761/eureka,http://admin:admin123@peer2:8762/eureka
-    instance:
-      prefer-ip-address: true
+      defaultZone: http://admin:admin123@localhost:8761/eureka,http://admin:admin123@localhost:8762/eureka
+  instance:
+    prefer-ip-address: true
+    metadata-map:
+      my-metadata: test my metadata
 
 logging:
   level:
