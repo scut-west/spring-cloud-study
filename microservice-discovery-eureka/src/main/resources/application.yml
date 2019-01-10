@@ -1,10 +1,18 @@
+security:
+  basic:
+    enabled: true
 spring:
   application:
     name: microservice-discovery-eureka-ha
+  security:
+    user:
+      name: "admin"
+      password: "admin123"
 eureka:
   client:
     service-url:
       defaultZone: http://peer1:8761/eureka,http://peer2:8762/eureka
+
 ---
 spring:
   profiles: peer1               #use to determine which profiles will be active
