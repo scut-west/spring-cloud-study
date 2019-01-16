@@ -8,12 +8,14 @@ spring:
     generate-ddl: false
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update    # 使用none 不会初始化数据库，使用update会初始化数据库
   datasource:
     platform: h2
     schema: classpath:schema.sql
     data: classpath:data.sql
-    jdbc-url: jdbc\:h2\:file\:D\:\\testdb
+    #spring.datasource.initialization-mode always为始终执行初始化，embedded只初始化内存数据库（默认值）,如h2等，never为不执行初始化
+    initialization-mode: embedded   #使用内存数据库如h2等，不能用always，只能用embedded
+#    jdbc-url: jdbc\:h2\:file\:D\:\\testdb
 
 eureka:
   client:
