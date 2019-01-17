@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-@EnableFeignClients
+//@EnableFeignClients   //comment @EnableFeignClients for customized Feign Client
 //@ComponentScan(basePackages = "com.itmuch.cloud.microservicesimpleconsumermovie", excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = RibbonConfiguration.class)})
 public class MicroserviceSimpleConsumerMovieApplication {
     @Bean
