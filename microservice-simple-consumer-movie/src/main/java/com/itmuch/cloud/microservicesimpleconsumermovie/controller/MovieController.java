@@ -1,6 +1,7 @@
 package com.itmuch.cloud.microservicesimpleconsumermovie.controller;
 
 import com.itmuch.cloud.microservicesimpleconsumermovie.entity.User;
+import com.itmuch.cloud.microservicesimpleconsumermovie.feign.UserFeignClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +28,13 @@ public class MovieController {
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 
+    @Autowired
+    private UserFeignClient userFeignClient;
+
     @GetMapping("/user/{id}")
     public User findById(@PathVariable Long id) {
-        return this.restTemplate.getForObject("http://MICROSERVICE-PROVIDER-USER/user/" + id, User.class);
+//        return this.restTemplate.getForObject("http://MICROSERVICE-PROVIDER-USER/user/" + id, User.class);
+        return this.userFeignClient.findById(id);
     }
 
     @GetMapping("/user-instance")
