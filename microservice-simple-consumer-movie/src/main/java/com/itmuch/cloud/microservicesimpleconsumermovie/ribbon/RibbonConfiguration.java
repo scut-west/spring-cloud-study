@@ -1,4 +1,4 @@
-package com.itmuch.cloud.microservicesimpleconsumermovie.config;
+package com.itmuch.cloud.microservicesimpleconsumermovie.ribbon;
 
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;

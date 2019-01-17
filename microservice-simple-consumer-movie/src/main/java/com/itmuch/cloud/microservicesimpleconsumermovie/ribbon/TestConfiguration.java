@@ -1,4 +1,4 @@
-package com.itmuch.cloud.microservicesimpleconsumermovie.config;
+package com.itmuch.cloud.microservicesimpleconsumermovie.ribbon;
 
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.context.annotation.Configuration;
