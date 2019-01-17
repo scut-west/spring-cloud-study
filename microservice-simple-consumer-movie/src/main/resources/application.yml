@@ -14,6 +14,16 @@ spring:
 ##    NIWSServerListClassName:    #配置ServerList的实现类
 ##    NIWSServerListFilterClassName:    #配置ServerListFilter的实现类
 
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
+    #feign 属性配置优先级比Java class配置优先级高，若想让java class配置优先级更高，用feign.client.default-to-properties=false
+    default-to-properties: false
+
 eureka:
   client:
     serviceUrl:
