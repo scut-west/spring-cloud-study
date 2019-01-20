@@ -10,6 +10,8 @@ import feign.Feign;
 import feign.auth.BasicAuthRequestInterceptor;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.openfeign.FeignClientsConfiguration;
 import org.springframework.context.annotation.Import;
@@ -20,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 @Import(FeignClientsConfiguration.class)
 @RestController
 public class SecurityMovieController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(SecurityMovieController.class);
+
     private UserFeignClient userFeignClient;
 
     private UserFeignClient adminFeignClient;
@@ -45,7 +49,8 @@ public class SecurityMovieController {
         return this.adminFeignClient.findById(id);
     }
 
-    public User findByIdUserFallback(Long id) {
+    public User findByIdUserFallback(Long id, Throwable throwable) {
+        SecurityMovieController.LOGGER.error("go into fallback function, error is: ", throwable);
         User user = new User();
         user.setId(-1L);
         user.setName("default user");
