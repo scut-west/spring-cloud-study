@@ -24,6 +24,9 @@ spring:
 #        loggerLevel: basic
 #    #feign 属性配置优先级比Java class配置优先级高，若想让Java class配置优先级更高，用feign.client.default-to-properties=false
 #    default-to-properties: false
+#  #全局feign禁用hystrix
+#  hystrix:
+#    enable: false
 
 eureka:
   client:
