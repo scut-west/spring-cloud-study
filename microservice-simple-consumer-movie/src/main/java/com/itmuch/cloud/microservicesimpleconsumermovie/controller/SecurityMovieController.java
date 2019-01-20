@@ -38,7 +38,8 @@ public class SecurityMovieController {
                 .target(UserFeignClient.class, "http://MICROSERVICE-PROVIDER-USER/");
     }
 
-    @HystrixCommand(fallbackMethod = "findByIdUserFallback")
+    @HystrixCommand(fallbackMethod = "findByIdUserFallback"/*, ignoreExceptions = {RuntimeException.class}*/)
+    //ignoreExceptions: meet setting errors, will not call fallback function, can use customized Exception.class
     @GetMapping("/user-user/{id}")
     public User findByIdUser(@PathVariable Long id) {
         return this.userFeignClient.findById(id);
