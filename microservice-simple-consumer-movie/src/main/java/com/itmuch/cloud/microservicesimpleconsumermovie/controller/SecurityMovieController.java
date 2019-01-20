@@ -3,6 +3,7 @@ package com.itmuch.cloud.microservicesimpleconsumermovie.controller;
 import com.itmuch.cloud.microservicesimpleconsumermovie.entity.User;
 import com.itmuch.cloud.microservicesimpleconsumermovie.feign.UserFeignClient;
 import com.itmuch.cloud.microservicesimpleconsumermovie.feign.config.FeignConfiguration;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import feign.Client;
 import feign.Contract;
 import feign.Feign;
@@ -33,6 +34,7 @@ public class SecurityMovieController {
                 .target(UserFeignClient.class, "http://MICROSERVICE-PROVIDER-USER/");
     }
 
+    @HystrixCommand(fallbackMethod = "findByIdUserFallback")
     @GetMapping("/user-user/{id}")
     public User findByIdUser(@PathVariable Long id) {
         return this.userFeignClient.findById(id);
@@ -41,5 +43,12 @@ public class SecurityMovieController {
     @GetMapping("/user-admin/{id}")
     public User findByIdAdmin(@PathVariable Long id) {
         return this.adminFeignClient.findById(id);
+    }
+
+    public User findByIdUserFallback(Long id) {
+        User user = new User();
+        user.setId(-1L);
+        user.setName("default user");
+        return user;
     }
 }
