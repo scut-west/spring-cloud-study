@@ -35,3 +35,13 @@ ribbon:
   eager-load:
     enabled: true
     clients: MICROSERVICE-PROVIDER-USER
+
+#for actuator, a library use to mirror server info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always    #show detail when call /actuator/health. if not set, only show server status.

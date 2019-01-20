@@ -39,3 +39,6 @@ management:
     web:
       exposure:
         include: "*"
+  endpoint:
+    health:
+      show-details: always    #show detail when call /actuator/health. if not set, only show server status.
