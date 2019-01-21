@@ -1,0 +1,18 @@
+server:
+  port: 8040
+spring:
+  application:
+    name: microservice-gateway-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin123@localhost:8761/eureka,http://admin:admin123@localhost:8762/eureka
+#for actuator, a library use to mirror server info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always    #show detail when call /actuator/health. if not set, only show server status.
